@@ -4,27 +4,25 @@ import CheckboxChapter from "./CheckboxChapter"
 import ButtonAddTitle from "./ButtonAddTitle"
 
 const Heading = ({ title, subtitles }) => (
-  <Wrapper margin="ml-3">
+  <Wrapper nameClass="ml-3 mt-3 mb-8 font-normal">
     <CheckboxChapter disabled={true} />
     {title}
     <br/>
     <ButtonAddTitle>
       Add subtitle
     </ButtonAddTitle>
-    {
-      subtitles && <Subtitles subtitles={subtitles} />
-    }
+    <Subtitles subtitles={subtitles} />
   </Wrapper>
 )
 
-const Wrapper = ({ children, margin }) => {
-  let className = "mt-3 h5 font-normal text-md "
+const Wrapper = ({ children, nameClass }) => {
+  let className = "text-base "
 
   return (
     <li className={
-      margin
-        ? className + margin
-        : className + margin
+      nameClass
+        ? className + nameClass
+        : className
       }
     >
       {children}
@@ -37,11 +35,11 @@ const Subtitles = ({ subtitles }) => (
     {
       subtitles.map(item => (
         <Wrapper
-          margin="ml-4"
-          key={item.id}
+          nameClass="mt-2 ml-4 font-light"
+          key={item.Id}
         >
           <CheckboxChapter />
-          {item.title}
+          {item.Title}
         </Wrapper>
       ))
     }

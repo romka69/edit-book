@@ -1,0 +1,30 @@
+{
+  "Title": "Moby Dick",
+  "Annotation" : "Moby-Dick or, The Whale is an 1851 novel by American writer Herman Melville. The book is the sailor Ishmael's narrative of the obsessive quest of Ahab, captain of the whaling ship Pequod, for revenge on Moby Dick, the giant white sperm whale that on the ship's previous voyage bit off Ahab's leg at the knee.",
+  "Chapters": [
+    {
+      "Id": 1,
+      "Title": "Loomings",
+      "Subtitles": [
+        {
+          "Id": 1,
+          "Title": "The Counterpano"
+        },
+        {
+          "Id": 2,
+          "Title": "Breackfast"
+        }
+      ]
+    },
+    {
+      "Id": 2,
+      "Title": "The Carpet Bag",
+      "Subtitles": []
+    },
+    {
+      "Id": 3,
+      "Title": "The Spouter-Inn",
+      "Subtitles": []
+    }
+  ]
+}

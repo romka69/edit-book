@@ -1,4 +1,6 @@
 import React, { useEffect } from "react"
+import { Provider } from "react-redux"
+import store from "./redux/store.js"
 
 import Layout from "./components/shared/Layout"
 import EditBook from "./components/EditBook"
@@ -11,9 +13,11 @@ function App() {
   }, []);
 
   return (
-    <Layout appName={appName}>
-      <EditBook />
-    </Layout>
+    <Provider store={store}>
+      <Layout appName={appName}>
+        <EditBook />
+      </Layout>
+    </Provider>
   )
 }
 

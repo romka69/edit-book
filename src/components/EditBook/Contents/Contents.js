@@ -4,7 +4,7 @@ import Filters from "./Filters"
 import Header from "./Header"
 import Heading from "./Heading"
 
-const Contents = ({ chapters }) => (
+const Contents = ({ chapters, toggleChapter, toggleSubtitle }) => (
   <div className="md:fixed py-2 px-4 rounded border-solid border md:border-0 border-gray-200">
     <Filters />
     <Header>
@@ -17,6 +17,8 @@ const Contents = ({ chapters }) => (
           <Heading
             key={chapter.Id}
             chapter={chapter}
+            toggleChapter={toggleChapter}
+            toggleSubtitle={toggleSubtitle}
           />
         ))
       }

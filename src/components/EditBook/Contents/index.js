@@ -6,4 +6,16 @@ const mapStateToProps = (state) => ({
   chapters: state.chapters
 })
 
-export default connect(mapStateToProps)(Contents)
+const mapDispatchToProps = (dispatch) => ({
+  toggleChapter: (id) => dispatch({
+    type: "TOGGLE_CHAPTER",
+    id
+  }),
+  toggleSubtitle: (parent, id) => dispatch({
+    type: "TOGGLE_SUBTITLE",
+    parent,
+    id
+  }),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contents)

@@ -12,20 +12,20 @@ export const chapters = function (state = initialState, action) {
             : chapter
         )
       )
-    case "TOGGLE_SUBTITLE":
-      return state.map(
-        (chapter) => (
-          chapter.Id === action.parent
-            ? chapter.Subtitles.map(
-                (subtitle) => (
-                  subtitle.Id === action.id
-                  ? { ...subtitle, Completed: !subtitle.Completed }
-                  : subtitle
-                )
-              )
-            : chapter
-          )
-        )
+    // case "TOGGLE_SUBTITLE":
+    //   return state.map(
+    //     (chapter) => (
+    //       chapter.Id === action.parent
+    //         ? chapter.Subtitles.map(
+    //             (subtitle) => (
+    //               subtitle.Id === action.id
+    //               ? { ...subtitle, Completed: !subtitle.Completed }
+    //               : subtitle
+    //             )
+    //           )
+    //         : chapter
+    //       )
+    //     )
     default:
       return state
   }

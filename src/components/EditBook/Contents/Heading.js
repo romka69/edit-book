@@ -3,15 +3,17 @@ import React from "react"
 import CheckboxChapter from "./CheckboxChapter"
 import ButtonAddTitle from "./ButtonAddTitle"
 
-const Heading = ({ title, subtitles }) => (
+const Heading = ({ chapter: { Title, Subtitles, Completed }}) => (
   <Wrapper nameClass="ml-3 mt-3 mb-8 font-normal">
-    <CheckboxChapter disabled={true} />
-    {title}
+    <CheckboxChapter
+      completed={Completed}
+    />
+    {Title}
     <br/>
     <ButtonAddTitle>
       Add subtitle
     </ButtonAddTitle>
-    <Subtitles subtitles={subtitles} />
+    <SubtitlesBlock subtitles={Subtitles} />
   </Wrapper>
 )
 
@@ -30,16 +32,16 @@ const Wrapper = ({ children, nameClass }) => {
   )
 }
 
-const Subtitles = ({ subtitles }) => (
+const SubtitlesBlock = ({ subtitles }) => (
   <ul>
     {
-      subtitles.map(item => (
+      subtitles && subtitles.map(subtitle => (
         <Wrapper
           nameClass="mt-2 ml-4 font-light"
-          key={item.Id}
+          key={subtitle.Id}
         >
           <CheckboxChapter />
-          {item.Title}
+          {subtitle.Title}
         </Wrapper>
       ))
     }

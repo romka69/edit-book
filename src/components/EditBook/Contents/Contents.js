@@ -16,8 +16,7 @@ const Contents = ({ chapters }) => (
         chapters && chapters.map(chapter => (
           <Heading
             key={chapter.Id}
-            title={chapter.Title}
-            subtitles={chapter.Subtitles}
+            chapter={chapter}
           />
         ))
       }

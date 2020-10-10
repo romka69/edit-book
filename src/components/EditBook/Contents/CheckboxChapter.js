@@ -1,11 +1,12 @@
 import React from "react"
 
-const CheckboxChapter = ({ disabled = false }) => (
+const CheckboxChapter = ({ completed = false }) => (
   <input
     className="mr-2"
     type="checkbox"
-    disabled={disabled}
+    checked={completed}
   />
+
 )
 
 export default CheckboxChapter

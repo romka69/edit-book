@@ -2,8 +2,21 @@ import { connect } from "react-redux"
 
 import Contents from "./Contents"
 
+const filters = {
+  SHOW_ALL: () => true,
+  SHOW_COMPLETED: (subtitle) => subtitle.Completed,
+  SHOW_UNCOMPLETED: (subtitle) => !subtitle.Completed
+}
+
 const mapStateToProps = (state) => ({
-  chapters: state.chapters
+  chapters: state.chapters.filter(filters[state.visibilityFilter])
+  // chapters: state.chapters.map(
+  //   chapter => (
+  //     chapter.Subtitles && chapter.Subtitles.length
+  //       ? chapter.Subtitles.filter(filters[state.visibilityFilter]
+  //       : chapter.Subtitles
+  //   )
+  // )
 })
 
 const mapDispatchToProps = (dispatch) => ({

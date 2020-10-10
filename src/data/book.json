@@ -8,23 +8,28 @@
       "Subtitles": [
         {
           "Id": 1,
-          "Title": "The Counterpano"
+          "Title": "The Counterpano",
+          "Completed": true
         },
         {
           "Id": 2,
-          "Title": "Breackfast"
+          "Title": "Breackfast",
+          "Completed": false
         }
-      ]
+      ],
+      "Completed": false
     },
     {
       "Id": 2,
       "Title": "The Carpet Bag",
-      "Subtitles": []
+      "Subtitles": [],
+      "Completed":false
     },
     {
       "Id": 3,
       "Title": "The Spouter-Inn",
-      "Subtitles": []
+      "Subtitles": [],
+      "Completed": true
     }
   ]
 }

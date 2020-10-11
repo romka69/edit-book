@@ -4,7 +4,7 @@ import Filters from "./Filters"
 import Header from "./Header"
 import Heading from "./Heading"
 
-const Contents = ({ chapters, toggleChapter, toggleSubtitle }) => (
+const Contents = ({ chapters, toggleChapter, toggleSubtitle, addChapter }) => (
   <div className="md:fixed py-2 px-4 rounded border-solid border md:border-0 border-gray-200">
     <Filters />
     <Header>
@@ -19,6 +19,7 @@ const Contents = ({ chapters, toggleChapter, toggleSubtitle }) => (
             chapter={chapter}
             toggleChapter={toggleChapter}
             toggleSubtitle={toggleSubtitle}
+            addChapter={addChapter}
           />
         ))
       }

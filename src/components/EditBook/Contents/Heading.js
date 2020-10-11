@@ -3,7 +3,7 @@ import React from "react"
 import CheckboxChapter from "./CheckboxChapter"
 import ButtonAddTitle from "./ButtonAddTitle"
 
-const Heading = ({ chapter: { Id, Title, Subtitles, Completed }, toggleChapter, toggleSubtitle }) => (
+const Heading = ({ chapter: { Id, Title, Subtitles, Completed }, toggleChapter, toggleSubtitle, addChapter }) => (
   <Wrapper nameClass="ml-3 mt-3 mb-8 font-normal">
     <CheckboxChapter
       completed={Completed}
@@ -11,7 +11,7 @@ const Heading = ({ chapter: { Id, Title, Subtitles, Completed }, toggleChapter, 
     />
     {Title}
     <br/>
-    <ButtonAddTitle>
+    <ButtonAddTitle addChapter={addChapter}>
       Add subtitle
     </ButtonAddTitle>
     <SubtitlesBlock

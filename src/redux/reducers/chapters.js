@@ -30,6 +30,9 @@ export const chapters = function (state = initialState, action) {
         ...state.slice(idx + 1, state.length)
       ]
 
+    case "ADD_СHAPTER":
+      return state.concat({ Id: Math.random()*20, Title: action.title, Completed: false, Subtitles: [] })
+
     default:
       return state
   }

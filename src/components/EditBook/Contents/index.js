@@ -9,14 +9,10 @@ const filters = {
 }
 
 const mapStateToProps = (state) => ({
-  chapters: state.chapters.filter(filters[state.visibilityFilter])
-  // chapters: state.chapters.map(
-  //   chapter => (
-  //     chapter.Subtitles && chapter.Subtitles.length
-  //       ? chapter.Subtitles.filter(filters[state.visibilityFilter]
-  //       : chapter.Subtitles
-  //   )
-  // )
+  chapters: state.chapters.map((chapter) => ({
+    ...chapter,
+    Subtitles: chapter.Subtitles.filter(filters[state.visibilityFilter])
+  }))
 })
 
 const mapDispatchToProps = (dispatch) => ({

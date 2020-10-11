@@ -25,10 +25,16 @@ const mapDispatchToProps = (dispatch) => ({
     parent,
     id
   }),
-  addChapter: (title) => dispatch({
+  addChapter: (_, title) => dispatch({
     type: "ADD_СHAPTER",
+    _,
     title
-  })
+  }),
+  addSubtitle: (parent, title) => dispatch({
+    type: "ADD_SUBTITLE",
+    parent,
+    title
+  }),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contents)

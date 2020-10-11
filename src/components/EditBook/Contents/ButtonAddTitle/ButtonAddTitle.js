@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import ReactDom from "react-dom"
 
-const ButtonAddTitle = ({ children, modal, toggleModal, addChapter }) => (
+const ButtonAddTitle = ({ children, modal, toggleModal, action, parentId = null }) => (
   <>
     <button
       onClick={() => toggleModal()}
@@ -14,7 +14,8 @@ const ButtonAddTitle = ({ children, modal, toggleModal, addChapter }) => (
       modal && ReactDom.createPortal(
         <ModalBlock
           toggleModal={() => toggleModal()}
-          addChapter={addChapter}
+          action={action}
+          parentId={parentId}
         />,
         document.getElementById("modal-root")
       )
@@ -24,7 +25,7 @@ const ButtonAddTitle = ({ children, modal, toggleModal, addChapter }) => (
 
 export default ButtonAddTitle
 
-const ModalBlock = ({ toggleModal, addChapter }) => {
+const ModalBlock = ({ toggleModal, action, parentId }) => {
   const [input, setInput] = useState('')
 
   return (
@@ -43,7 +44,7 @@ const ModalBlock = ({ toggleModal, addChapter }) => {
             Close
           </ActionButton>
           <ActionButton onClick={
-            () => { addChapter(input); setInput(""); toggleModal()}
+            () => { action(parentId, input); setInput(""); toggleModal()}
           }>
             Add
           </ActionButton>

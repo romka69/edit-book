@@ -3,6 +3,8 @@ import Book from "../../data/book.json"
 const initialState = Book.Chapters
 
 export const chapters = function (state = initialState, action) {
+  const idx = state.findIndex(chapter => chapter.Id === action.parent)
+
   switch (action.type) {
     case "TOGGLE_CHAPTER":
       return state.map(
@@ -14,8 +16,6 @@ export const chapters = function (state = initialState, action) {
       )
 
     case "TOGGLE_SUBTITLE":
-      const idx = state.findIndex(chapter => chapter.Id === action.parent)
-
       return [
         ...state.slice(0, idx),
         {
@@ -32,6 +32,18 @@ export const chapters = function (state = initialState, action) {
 
     case "ADD_СHAPTER":
       return state.concat({ Id: Math.random()*20, Title: action.title, Completed: false, Subtitles: [] })
+
+    case "ADD_SUBTITLE":
+      return [
+        ...state.slice(0, idx),
+        {
+          ...state[idx],
+          Subtitles: state[idx].Subtitles.concat(
+            { Id: Math.random()*20, Title: action.title, Completed: false }
+          )
+        },
+        ...state.slice(idx + 1, state.length)
+      ]
 
     default:
       return state

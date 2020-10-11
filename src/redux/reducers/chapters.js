@@ -12,20 +12,24 @@ export const chapters = function (state = initialState, action) {
             : chapter
         )
       )
-    // case "TOGGLE_SUBTITLE":
-    //   return state.map(
-    //     (chapter) => (
-    //       chapter.Id === action.parent
-    //         ? chapter.Subtitles.map(
-    //             (subtitle) => (
-    //               subtitle.Id === action.id
-    //               ? { ...subtitle, Completed: !subtitle.Completed }
-    //               : subtitle
-    //             )
-    //           )
-    //         : chapter
-    //       )
-    //     )
+
+    case "TOGGLE_SUBTITLE":
+      const idx = state.findIndex(chapter => chapter.Id === action.parent)
+
+      return [
+        ...state.slice(0, idx),
+        {
+          ...state[idx],
+          Subtitles: state[idx].Subtitles.map(subTitle => {
+            if (subTitle.Id === action.id)
+              return { ...subTitle, Completed: !subTitle.Completed }
+            else
+              return subTitle
+          })
+        },
+        ...state.slice(idx + 1, state.length)
+      ]
+
     default:
       return state
   }

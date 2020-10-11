@@ -1,15 +1,11 @@
 import React from "react"
 
-const CheckboxChapter = ({ parent = false, id, completed = false, toggleChapter = false, toggleSubtitle = false }) => (
+const CheckboxChapter = ({ completed, onChange }) => (
   <input
-    onChange={
-      toggleChapter
-        ? () => toggleChapter(id)
-        : () => toggleSubtitle(parent, id)
-    }
+    onChange={onChange}
+    checked={completed}
     className="mr-2"
     type="checkbox"
-    checked={completed}
   />
 )
 

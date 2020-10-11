@@ -25,5 +25,5 @@ function calcProgress(chapters, totalLength) {
     return data.reduce((acc, cur) => cur.Completed ? acc + 1 : acc, 0)
   }
 
-  return numOfCompleted / totalLength * 100
+  return Math.round(numOfCompleted / totalLength * 100)
 }

@@ -1,18 +1,20 @@
 import React from "react"
 
+import { visibilityFilters } from "../../../../redux/actions/visibilityFilters"
+
 const Filters = ({ setFilter }) => (
   <>
     <h5 className="h5 font-medium mb-1">
       Subtitle filters
     </h5>
     <div className="md:grid md:grid-cols-3 md:gap-2 mb-4">
-      <ButtonFilter onClick={() => { setFilter("SHOW_ALL") }}>
+      <ButtonFilter onClick={() => { setFilter(visibilityFilters.SHOW_ALL) }}>
         All
       </ButtonFilter>
-      <ButtonFilter onClick={() => { setFilter("SHOW_COMPLETED") }}>
+      <ButtonFilter onClick={() => { setFilter(visibilityFilters.SHOW_COMPLETED) }}>
         Done
       </ButtonFilter>
-      <ButtonFilter onClick={() => { setFilter("SHOW_UNCOMPLETED") }}>
+      <ButtonFilter onClick={() => { setFilter(visibilityFilters.SHOW_UNCOMPLETED) }}>
         Undone
       </ButtonFilter>
     </div>

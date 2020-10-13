@@ -1,3 +1,4 @@
+import * as chaptersActionTypes from "../actionTypes/chapters"
 import Book from "../../data/book.json"
 
 const initialState = Book.Chapters
@@ -6,7 +7,7 @@ export const chapters = function (state = initialState, action) {
   const idx = state.findIndex(chapter => chapter.Id === action.parent)
 
   switch (action.type) {
-    case "TOGGLE_CHAPTER":
+    case chaptersActionTypes.TOGGLE_CHAPTER:
       return state.map(
         (chapter) => (
           chapter.Id === action.id
@@ -15,7 +16,7 @@ export const chapters = function (state = initialState, action) {
         )
       )
 
-    case "TOGGLE_SUBTITLE":
+    case chaptersActionTypes.TOGGLE_SUBTITLE:
       return [
         ...state.slice(0, idx),
         {
@@ -30,10 +31,10 @@ export const chapters = function (state = initialState, action) {
         ...state.slice(idx + 1, state.length)
       ]
 
-    case "ADD_СHAPTER":
+    case chaptersActionTypes.ADD_CHAPTER:
       return state.concat({ Id: Math.random()*20, Title: action.title, Completed: false, Subtitles: [] })
 
-    case "ADD_SUBTITLE":
+    case chaptersActionTypes.ADD_SUBTITLE:
       return [
         ...state.slice(0, idx),
         {

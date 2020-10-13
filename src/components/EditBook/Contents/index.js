@@ -29,17 +29,17 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleChapter: (id) => {
-    dispatch(chaptersActions.toggleChapter(id))
+  toggleTitle: (id) => {
+    dispatch(chaptersActions.toggleTitle(id))
   },
-  toggleSubtitle: (parent, id) => {
-    dispatch(chaptersActions.toggleSubtitle(parent, id))
+  toggleSubtitle: (id, parentId) => {
+    dispatch(chaptersActions.toggleSubtitle(id, parentId))
   },
-  addChapter: (parent, title) => {
-    dispatch(chaptersActions.addChapter(parent, title))
+  addTitle: (text) => {
+    dispatch(chaptersActions.addTitle(text))
   },
-  addSubtitle: (parent, title) => {
-    dispatch(chaptersActions.addSubtitle(parent, title))
+  addSubtitle: (text, parentId) => {
+    dispatch(chaptersActions.addSubtitle(text, parentId))
   },
 })
 

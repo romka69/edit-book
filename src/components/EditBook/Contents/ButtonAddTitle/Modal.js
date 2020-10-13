@@ -22,7 +22,7 @@ const Modal = ({ header, toggleModal, action, parentId }) => {
             Close
           </ActionButton>
           <ActionButton onClick={
-            () => { action(parentId, input); setInput(""); toggleModal()}
+            () => { action(input, parentId); setInput(""); toggleModal()}
           }>
             Add
           </ActionButton>

@@ -1,24 +1,24 @@
 import * as chaptersActions from "../actionTypes/chapters"
 
-export const toggleChapter = (id) => ({
-  type: chaptersActions.TOGGLE_CHAPTER,
+export const toggleTitle = (id) => ({
+  type: chaptersActions.TOGGLE_TITLE,
   id
 })
 
-export const toggleSubtitle = (parent, id) => ({
+export const toggleSubtitle = (id, parentId) => ({
   type: chaptersActions.TOGGLE_SUBTITLE,
-  parent,
-  id
+  id,
+  parentId
 })
 
-export const addChapter = (parent, title) => ({
-  type: chaptersActions.ADD_CHAPTER,
-  parent,
-  title
+export const addTitle = (text, parentId) => ({
+  type: chaptersActions.ADD_TITLE,
+  text,
+  parentId
 })
 
-export const addSubtitle = (parent, title) => ({
+export const addSubtitle = (text, parentId) => ({
   type: chaptersActions.ADD_SUBTITLE,
-  parent,
-  title
+  text,
+  parentId
 })

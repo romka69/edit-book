@@ -5,7 +5,7 @@ import Header from "./Header"
 import ButtonAddTitle from "./ButtonAddTitle"
 import Heading from "./Heading"
 
-const Contents = ({ chapters, toggleChapter, toggleSubtitle, addChapter, addSubtitle }) => (
+const Contents = ({ chapters, toggleTitle, toggleSubtitle, addTitle, addSubtitle }) => (
   <div className="md:fixed py-2 px-4 rounded border-solid border md:border-0 border-gray-200">
     <Filters />
     <Header>
@@ -13,8 +13,8 @@ const Contents = ({ chapters, toggleChapter, toggleSubtitle, addChapter, addSubt
     </Header>
 
     <ButtonAddTitle
-      action={addChapter}
-      header="Add chapter"
+      action={addTitle}
+      header="Add title"
     />
 
     <ul>
@@ -23,7 +23,7 @@ const Contents = ({ chapters, toggleChapter, toggleSubtitle, addChapter, addSubt
           <Heading
             key={chapter.Id}
             chapter={chapter}
-            toggleChapter={toggleChapter}
+            toggleTitle={toggleTitle}
             toggleSubtitle={toggleSubtitle}
             addSubtitle={addSubtitle}
           />

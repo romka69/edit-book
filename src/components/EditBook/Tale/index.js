@@ -1,19 +1,11 @@
-import React from "react"
+import { connect } from "react-redux"
 
-import Header from "./Header"
-import Statistics from "./Statistics"
-import Body from "./Body"
+import Tale from "./Tale"
 
-const Tale = () => (
-  <>
-    <Header>
-      Moby-dick
-    </Header>
+const mapStateToProps = ({ bookInfo, chapters }) => ({
+  title: bookInfo.title,
+  annotation: bookInfo.annotation,
+  chapters: chapters,
+})
 
-    <Statistics />
-
-    <Body />
-  </>
-)
-
-export default Tale
+export default connect(mapStateToProps)(Tale)

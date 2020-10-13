@@ -1,45 +1,23 @@
 import React, { useState } from "react"
-import ReactDom from "react-dom"
 
-const ButtonAddTitle = ({ children, modal, toggleModal, action, parentId = null }) => (
-  <>
-    <button
-      onClick={() => toggleModal()}
-      className="md:w-full w-40 text-sm border border-gray-400 text-gray-800 rounded"
-    >
-      {children}
-    </button>
-
-    {
-      modal && ReactDom.createPortal(
-        <ModalBlock
-          toggleModal={() => toggleModal()}
-          action={action}
-          parentId={parentId}
-        />,
-        document.getElementById("modal-root")
-      )
-    }
-  </>
-)
-
-export default ButtonAddTitle
-
-const ModalBlock = ({ toggleModal, action, parentId }) => {
+const Modal = ({ header, toggleModal, action, parentId }) => {
   const [input, setInput] = useState('')
 
   return (
     <div className="fixed w-full h-full flex justify-center items-center bg-gray-400 bg-opacity-50 inset-0">
       <div className="p-5 bg-white shadow bg-opacity-100 rounded">
+        <h5 className="h5 text-base text-center">
+          {header}
+        </h5>
         <input
-          className="block w-full border rounded py-3 px-4 leading-none"
+          className="block w-full border rounded py-3 px-4 leading-none my-6"
           type="text"
           name="text"
           placeholder="Title"
           value={input}
           onChange={e => setInput(e.target.value)}
         />
-        <div className="mt-5 text-center text-gray-800 flex justify-between">
+        <div className="text-center text-gray-800 flex justify-between">
           <ActionButton onClick={toggleModal}>
             Close
           </ActionButton>
@@ -53,6 +31,8 @@ const ModalBlock = ({ toggleModal, action, parentId }) => {
     </div>
   )
 }
+
+export default Modal
 
 const ActionButton = ({ children, onClick }) => (
   <button

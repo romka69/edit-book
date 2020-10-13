@@ -1,12 +1,16 @@
 import React from "react"
+import classNames from "classnames"
 
 import CheckboxChapter from "./CheckboxChapter"
 import ButtonAddTitle from "./ButtonAddTitle"
 
-const Heading = (
-  { chapter: { Id, Title, Subtitles, Completed }, toggleChapter, toggleSubtitle, addSubtitle }
-  ) => (
-  <Wrapper nameClass="ml-3 mt-3 mb-8 font-normal">
+const Heading = ({
+  chapter: { Id, Title, Subtitles, Completed },
+  toggleChapter,
+  toggleSubtitle,
+  addSubtitle
+}) => (
+  <Wrapper firstLvl={true}>
     <CheckboxChapter
       completed={Completed}
       onChange={() => toggleChapter(Id)}
@@ -16,10 +20,8 @@ const Heading = (
     <ButtonAddTitle
       action={addSubtitle}
       parentId={Id}
-    >
-      Add subtitle
-    </ButtonAddTitle>
-
+      header="Add subtitle"
+    />
     <SubtitlesBlock
       parentId={Id}
       subtitles={Subtitles}
@@ -28,16 +30,15 @@ const Heading = (
   </Wrapper>
 )
 
-const Wrapper = ({ children, nameClass }) => {
-  let className = "text-base "
+const Wrapper = ({ children, firstLvl }) => {
+  const className = classNames({
+    "text-base": true,
+    "ml-3 mt-3 mb-8 font-normal": firstLvl,
+    "mt-2 ml-4 font-light": !firstLvl
+  })
 
   return (
-    <li className={
-      nameClass
-        ? className + nameClass
-        : className
-      }
-    >
+    <li className={className}>
       {children}
     </li>
   )
@@ -47,10 +48,7 @@ const SubtitlesBlock = ({ parentId, subtitles, toggleSubtitle }) => (
   <ul>
     {
       subtitles && subtitles.map(subtitle => (
-        <Wrapper
-          nameClass="mt-2 ml-4 font-light"
-          key={subtitle.Id}
-        >
+        <Wrapper key={subtitle.Id}>
           <CheckboxChapter
             onChange={() => toggleSubtitle(parentId, subtitle.Id)}
             completed={subtitle.Completed}

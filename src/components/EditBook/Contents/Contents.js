@@ -12,9 +12,10 @@ const Contents = ({ chapters, toggleChapter, toggleSubtitle, addChapter, addSubt
       Contents:
     </Header>
 
-    <ButtonAddTitle action={addChapter}>
-      Add chapter
-    </ButtonAddTitle>
+    <ButtonAddTitle
+      action={addChapter}
+      header="Add chapter"
+    />
 
     <ul>
       {

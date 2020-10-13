@@ -1,15 +1,33 @@
-import { connect } from "react-redux"
+import React, { useState } from "react"
+import ReactDom from "react-dom"
 
-import ButtonAddTitle from "./ButtonAddTitle"
+import ModalBlock from "./Modal"
 
-const mapStateToProps = (state) => ({
-  modal: state.modal
-})
+const ButtonAddTitle = ({ header, action, parentId = false }) => {
+  const [modal, setModal] = useState('')
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleModal: () => dispatch({
-    type: "TOGGLE_MODAL"
-  }),
-})
+  return (
+    <>
+      <button
+        onClick={() => setModal(true)}
+        className="md:w-full w-40 text-sm border border-gray-400 text-gray-800 rounded"
+      >
+        {header}
+      </button>
 
-export default connect(mapStateToProps, mapDispatchToProps)(ButtonAddTitle)
+      {
+        modal && ReactDom.createPortal(
+          <ModalBlock
+            toggleModal={() => setModal(false)}
+            action={action}
+            parentId={parentId}
+            header={header}
+          />,
+          document.getElementById("modal-root")
+        )
+      }
+    </>
+  )
+}
+
+export default ButtonAddTitle

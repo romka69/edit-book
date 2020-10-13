@@ -25,9 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
     parent,
     id
   }),
-  addChapter: (_, title) => dispatch({
+  addChapter: (parent, title) => dispatch({
     type: "ADD_СHAPTER",
-    _,
+    parent,
     title
   }),
   addSubtitle: (parent, title) => dispatch({

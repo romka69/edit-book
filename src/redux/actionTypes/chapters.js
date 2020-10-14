@@ -1,0 +1,4 @@
+export const TOGGLE_TITLE = 'TOGGLE_TITLE'
+export const TOGGLE_SUBTITLE = 'TOGGLE_SUBTITLE'
+export const ADD_TITLE = 'ADD_TITLE'
+export const ADD_SUBTITLE = 'ADD_SUBTITLE'

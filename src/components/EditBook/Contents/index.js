@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 
-import * as chaptersActions from "../../../redux/actions/chapters"
-import { visibilityFilters } from "../../../redux/actions/visibilityFilters"
+import { visibilityFilters } from "../../../redux/slices/visibilityFilters"
+import { addTitle, addSubtitle, toggleTitle, toggleSubtitle } from "../../../redux/slices/chapters"
 import Contents from "./Contents"
 
 
@@ -22,25 +22,18 @@ const getVisibleSubtitles = (subtitles, filter) => {
 }
 
 const mapStateToProps = (state) => ({
-  chapters: state.chapters.map((chapter) => ({
+  isLoading: state.chapters.isLoading,
+  chapters: state.chapters.entries.map((chapter) => ({
     ...chapter,
-    Subtitles: getVisibleSubtitles(chapter.Subtitles, state.visibilityFilters)
+     Subtitles: getVisibleSubtitles(chapter.Subtitles, state.visibilityFilters)
   }))
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleTitle: (id) => {
-    dispatch(chaptersActions.toggleTitle(id))
-  },
-  toggleSubtitle: (id, parentId) => {
-    dispatch(chaptersActions.toggleSubtitle(id, parentId))
-  },
-  addTitle: (text) => {
-    dispatch(chaptersActions.addTitle(text))
-  },
-  addSubtitle: (text, parentId) => {
-    dispatch(chaptersActions.addSubtitle(text, parentId))
-  },
+  toggleTitle: (id) => dispatch(toggleTitle(id)),
+  toggleSubtitle: (id, parentId) => dispatch(toggleSubtitle(id, parentId)),
+  addTitle: (text) => dispatch(addTitle(text)),
+  addSubtitle: (text, parentId) => dispatch(addSubtitle(text, parentId)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contents)

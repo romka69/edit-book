@@ -50,7 +50,7 @@ const SubtitlesBlock = ({ parentId, subtitles, toggleSubtitle }) => (
       subtitles && subtitles.map(subtitle => (
         <Wrapper key={subtitle.Id}>
           <CheckboxChapter
-            onChange={() => toggleSubtitle(subtitle.Id, parentId)}
+            onChange={() => toggleSubtitle({id: subtitle.Id, parentId})}
             completed={subtitle.Completed}
           />
           {subtitle.Title}

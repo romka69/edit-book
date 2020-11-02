@@ -2,7 +2,7 @@ import { connect } from "react-redux"
 
 import Statistics from "./Statistics"
 
-const mapStateToProps = ({ chapters: { entries } }) => ({
+const mapStateToProps = ({ chapters: { present: { entries } } }) => ({
   numOfChapters: entries.length,
   numOfSubtitles: countSubtitles(entries),
   percentProgress: calcProgress(entries, entries.length + countSubtitles(entries))

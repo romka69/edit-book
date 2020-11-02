@@ -5,7 +5,7 @@ import Tale from "./Tale"
 const mapStateToProps = ({ bookInfo, chapters }) => ({
   title: bookInfo.title,
   annotation: bookInfo.annotation,
-  chapters: chapters.entries,
+  chapters: chapters.present.entries,
 })
 
 export default connect(mapStateToProps)(Tale)

@@ -1,4 +1,5 @@
 import { connect } from "react-redux"
+import { ActionCreators } from "redux-undo"
 
 import { visibilityFilters } from "../../../redux/slices/visibilityFilters"
 import { addTitle, addSubtitle, toggleTitle, toggleSubtitle } from "../../../redux/slices/chapters"
@@ -23,7 +24,7 @@ const getVisibleSubtitles = (subtitles, filter) => {
 
 const mapStateToProps = (state) => ({
   isLoading: state.chapters.isLoading,
-  chapters: state.chapters.entries.map((chapter) => ({
+  chapters: state.chapters.present.entries.map((chapter) => ({
     ...chapter,
      Subtitles: getVisibleSubtitles(chapter.Subtitles, state.visibilityFilters)
   }))
@@ -34,6 +35,7 @@ const mapDispatchToProps = (dispatch) => ({
   toggleSubtitle: (id, parentId) => dispatch(toggleSubtitle(id, parentId)),
   addTitle: (text) => dispatch(addTitle(text)),
   addSubtitle: (text, parentId) => dispatch(addSubtitle(text, parentId)),
+  undo: () => dispatch(ActionCreators.undo()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Contents)

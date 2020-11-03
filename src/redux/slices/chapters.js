@@ -1,15 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit"
-
-import Book from "../../data/book.json"
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import axios from "axios"
 
 const initialState = {
   isLoading: false,
   isError: false,
   error: null,
-  entries: Book.Chapters,
+  entries: [],
+  bookInfo: {},
 }
+export const fetchBook = createAsyncThunk(
+  "books/fetchCurrent",
+  async () => {
+    const response = await axios({
+      method: "GET",
+      url: "https://book5-2d7a.restdb.io/rest/books/5fa0a047f8a0d31e00000662",
+      headers: {
+        "x-apikey": process.env.REACT_APP_API_TOKEN_RESTDB
+      }
+    })
 
-const getIdx = (state, action) => state.entries.findIndex(chapter => chapter.Id === action.payload.parentId)
+    return response.data
+  }
+)
+
+const getIdx = (state, action) => state.entries.findIndex(chapter => chapter._id === action.payload.parentId)
 
 const chaptersSlice = createSlice({
   name: "chapters",
@@ -20,7 +34,7 @@ const chaptersSlice = createSlice({
         ...state,
         entries: state.entries.map(
         (chapter) => (
-          chapter.Id === action.payload
+          chapter._id === action.payload
             ? { ...chapter, Completed: !chapter.Completed }
             : chapter
         )
@@ -36,7 +50,7 @@ const chaptersSlice = createSlice({
           {
             ...state.entries[idx],
             Subtitles: state.entries[idx].Subtitles.map(subTitle => {
-              if (subTitle.Id === action.payload.id)
+              if (subTitle._id === action.payload.id)
                 return { ...subTitle, Completed: !subTitle.Completed }
               else
                 return subTitle
@@ -49,7 +63,7 @@ const chaptersSlice = createSlice({
     addTitle(state, action) {
       return {
         ...state,
-        entries: state.entries.concat({ Id: Math.random()*20, Title: action.payload.text, Completed: false, Subtitles: [] })
+        entries: state.entries.concat({ _id: Math.random()*20, Title: action.payload.text, Completed: false, Subtitles: [] })
       }
     },
     addSubtitle(state, action) {
@@ -61,13 +75,24 @@ const chaptersSlice = createSlice({
           {
             ...state.entries[idx],
             Subtitles: state.entries[idx].Subtitles.concat(
-              { Id: Math.random()*20, Title: action.payload.text, Completed: false }
+              { _id: Math.random()*20, Title: action.payload.text, Completed: false }
             )
           },
           ...state.entries.slice(idx + 1, state.entries.length)
         ]
       }
     }
+  },
+  extraReducers: {
+    [fetchBook.pending]: (state, action) => ({
+      ...state,
+      isLoading: true
+    }),
+    [fetchBook.fulfilled]: (state, action) => ({
+      ...initialState,
+      entries: action.payload.Chapters,
+      bookInfo: { title: action.payload.Title, annotation: action.payload.Annotation }
+    })
   }
 })
 

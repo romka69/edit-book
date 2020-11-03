@@ -5,7 +5,7 @@ import CheckboxChapter from "./CheckboxChapter"
 import ButtonAddTitle from "./ButtonAddTitle"
 
 const Heading = ({
-  chapter: { Id, Title, Subtitles, Completed },
+  chapter: { _id, Title, Subtitles, Completed },
   toggleTitle,
   toggleSubtitle,
   addSubtitle
@@ -13,17 +13,17 @@ const Heading = ({
   <Wrapper firstLvl={true}>
     <CheckboxChapter
       completed={Completed}
-      onChange={() => toggleTitle(Id)}
+      onChange={() => toggleTitle(_id)}
     />
     {Title}
     <br/>
     <ButtonAddTitle
       action={addSubtitle}
-      parentId={Id}
+      parentId={_id}
       header="Add subtitle"
     />
     <SubtitlesBlock
-      parentId={Id}
+      parentId={_id}
       subtitles={Subtitles}
       toggleSubtitle={toggleSubtitle}
     />
@@ -48,9 +48,9 @@ const SubtitlesBlock = ({ parentId, subtitles, toggleSubtitle }) => (
   <ul>
     {
       subtitles && subtitles.map(subtitle => (
-        <Wrapper key={subtitle.Id}>
+        <Wrapper key={subtitle._id}>
           <CheckboxChapter
-            onChange={() => toggleSubtitle({id: subtitle.Id, parentId})}
+            onChange={() => toggleSubtitle({id: subtitle._id, parentId})}
             completed={subtitle.Completed}
           />
           {subtitle.Title}

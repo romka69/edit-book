@@ -1,5 +1,4 @@
 import React from "react"
-import undoable from "redux-undo"
 
 import Filters from "./Filters"
 import Header from "./Header"
@@ -23,7 +22,7 @@ const Contents = ({ chapters, toggleTitle, toggleSubtitle, addTitle, addSubtitle
       {
         chapters && chapters.map(chapter => (
           <Heading
-            key={chapter.Id}
+            key={chapter._id}
             chapter={chapter}
             toggleTitle={toggleTitle}
             toggleSubtitle={toggleSubtitle}

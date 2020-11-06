@@ -8,11 +8,11 @@ import EditBook from "./components/EditBook"
 
 const appName = "Edit-Book"
 
-const onLoad = () => {
-  store.dispatch(fetchBook())
+const onLoad = (id) => {
+  store.dispatch(fetchBook(id))
 }
 
-onLoad()
+onLoad("5fa0a047f8a0d31e00000662")
 
 function App() {
   useEffect(() => {

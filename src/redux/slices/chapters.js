@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
-import axios from "axios"
+import { backend } from "../../api"
 
 const initialState = {
   isLoading: false,
@@ -8,20 +8,25 @@ const initialState = {
   entries: [],
   bookInfo: {},
 }
+
 export const fetchBook = createAsyncThunk(
   "books/fetchCurrent",
-  async () => {
-    const response = await axios({
-      method: "GET",
-      url: "https://book5-2d7a.restdb.io/rest/books/5fa0a047f8a0d31e00000662",
-      headers: {
-        "x-apikey": process.env.REACT_APP_API_TOKEN_RESTDB
-      }
-    })
+  async (id) => {
+    const responseBookInfo = await backend.books.show(id)
+    const responseChapters = await backend.chapters.childsOfBook(id)
 
-    return response.data
+    return { bookInfo: responseBookInfo.data, Chapters: fixSubtitles(responseChapters.data) }
   }
 )
+
+// added empty "Subtitles: []" for Chapters without child-Subtitles
+function fixSubtitles(chapters) {
+  chapters.map((chapter) => {
+    if (!("Subtitles" in chapter)) chapter.Subtitles = []
+  })
+
+  return chapters
+}
 
 const getIdx = (state, action) => state.entries.findIndex(chapter => chapter._id === action.payload.parentId)
 
@@ -91,7 +96,7 @@ const chaptersSlice = createSlice({
     [fetchBook.fulfilled]: (state, action) => ({
       ...initialState,
       entries: action.payload.Chapters,
-      bookInfo: { title: action.payload.Title, annotation: action.payload.Annotation }
+      bookInfo: { title: action.payload.bookInfo.Title, annotation: action.payload.bookInfo.Annotation }
     })
   }
 })

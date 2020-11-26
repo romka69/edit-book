@@ -1,6 +1,6 @@
 import React from "react"
 
-import { visibilityFilters } from "../../../../redux/actions/visibilityFilters"
+import { visibilityFilters } from "../../../../redux/slices/visibilityFilters"
 
 const Filters = ({ setFilter }) => (
   <>

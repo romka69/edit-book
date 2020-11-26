@@ -7,7 +7,7 @@ const Body = ({ chapters }) => (
     {
       chapters && chapters.map(chapter => (
         <Chapter
-          key={chapter.Id}
+          key={chapter._id}
           chapter={chapter}
         />
       ))

@@ -37,7 +37,7 @@ const SubtitlesBlock = ({ subtitles }) => (
     {
       subtitles && subtitles.map(subtitle => (
         <Wrapper
-          key={subtitle.Id}
+          key={subtitle._id}
           completed={subtitle.Completed}
         >
           <Heading>

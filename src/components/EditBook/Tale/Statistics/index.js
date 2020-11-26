@@ -2,22 +2,22 @@ import { connect } from "react-redux"
 
 import Statistics from "./Statistics"
 
-const mapStateToProps = ({ chapters }) => ({
-  numOfChapters: chapters.length,
-  numOfSubtitles: countSubtitles(chapters),
-  percentProgress: calcProgress(chapters, chapters.length + countSubtitles(chapters))
+const mapStateToProps = ({ chapters: { present: { entries } } }) => ({
+  numOfChapters: entries.length,
+  numOfSubtitles: countSubtitles(entries),
+  percentProgress: calcProgress(entries, entries.length + countSubtitles(entries))
 })
 
 export default connect(mapStateToProps)(Statistics)
 
-function countSubtitles(chapters) {
-  return chapters.reduce((acc, cur) => acc + cur.Subtitles.length, 0)
+function countSubtitles(entries) {
+  return entries.reduce((acc, cur) => acc + cur.Subtitles.length, 0)
 }
 
-function calcProgress(chapters, totalLength) {
-  let numOfCompleted = reduceCompleted(chapters)
+function calcProgress(entries, totalLength) {
+  let numOfCompleted = reduceCompleted(entries)
 
-  chapters.forEach(
+  entries.forEach(
     ({ Subtitles }) => numOfCompleted += reduceCompleted(Subtitles)
   )
 

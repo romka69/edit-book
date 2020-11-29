@@ -80,4 +80,44 @@ describe("Edit-Book app", () => {
         .check()
     })
   })
+
+  context("Subtitle filters", () => {
+    it("Done", () => {
+      cy.contains("Done")
+        .click()
+
+      cy.get("ul")
+        .contains("The Counterpano")
+
+      cy.get("ul")
+        .contains("Breackfast")
+        .should("not.exist")
+    })
+
+    it("Undone", () => {
+      cy.contains("Undone")
+        .click()
+
+      cy.get("ul")
+        .contains("Breackfast")
+
+      cy.get("ul")
+        .contains("The Counterpano")
+        .should("not.exist")
+    })
+
+    it("All", () => {
+      cy.contains("Done")
+        .click()
+
+      cy.contains("All")
+        .click()
+
+      cy.get("ul")
+        .contains("The Counterpano")
+
+      cy.get("ul")
+        .contains("Breackfast")
+    })
+  })
 })

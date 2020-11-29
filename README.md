@@ -1,9 +1,9 @@
 
 # Edit-book
 
-![](https://i.imgur.com/Dvma2PF.png)
+App for creating books. This education project with react.
 
-App for creating books.
+[Image of main page](https://i.imgur.com/Dvma2PF.png)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -34,4 +34,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## ENV Configuration
 
-Renama `.env.sample` file to `.env` and paste your keys from restdb.
+Rename `.env.sample` file to `.env` and paste your keys from restdb.
